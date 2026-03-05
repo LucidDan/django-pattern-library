@@ -1,17 +1,16 @@
-[tool.poetry]
+[project]
 name = "django-pattern-library"
 version = "1.5.0"
 description = "A module for Django that allows to build pattern libraries for your projects."
-authors = ["Thibaud Colas <thibaud.colas@torchbox.com>"]
-license = "BSD-3-Clause"
 readme = "README.md"
-repository = "https://github.com/torchbox/django-pattern-library"
-documentation = "https://torchbox.github.io/django-pattern-library/"
+license = "BSD-3-Clause"
+authors = [
+  { name = "Thibaud Colas", email = "<thibaud.colas@torchbox.com>" },
+]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Environment :: Web Environment",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: BSD License",
   "Operating System :: OS Independent",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.10",
@@ -24,6 +23,21 @@ classifiers = [
   "Framework :: Django :: 5.2",
   "Framework :: Django :: 6.0",
 ]
+requires-python = ">=3.10"
+dependencies = [
+  "Django>=4.2",
+  "PyYAML>=5.1,<7.0",
+  "Markdown>=3.1",
+]
+
+[project.urls]
+repository = "https://github.com/torchbox/django-pattern-library"
+documentation = "https://torchbox.github.io/django-pattern-library/"
+Demo = "https://torchbox.github.io/django-pattern-library/demo/"
+Support = "https://github.com/torchbox/django-pattern-library/discussions"
+Issues = "https://github.com/torchbox/django-pattern-library/issues"
+
+[tool.poetry]
 packages = [{ include = "pattern_library" }]
 include = [
   { path = "pattern_library/static/pattern_library/dist/bundle.js", format = [
@@ -32,17 +46,6 @@ include = [
   ] },
 ]
 exclude = ['pattern_library/static/pattern_library/src/**/*']
-
-[tool.poetry.urls]
-"Demo" = "https://torchbox.github.io/django-pattern-library/demo/"
-"Support" = "https://github.com/torchbox/django-pattern-library/discussions"
-"Issues" = "https://github.com/torchbox/django-pattern-library/issues"
-
-[tool.poetry.dependencies]
-python = "^3.10"
-Django = ">=4.2"
-PyYAML = ">=5.1,<7.0"
-Markdown = "^3.1"
 
 [tool.poetry.group.dev.dependencies]
 beautifulsoup4 = "^4.8"
