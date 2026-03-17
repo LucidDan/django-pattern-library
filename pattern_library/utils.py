@@ -17,7 +17,7 @@ import yaml
 from pattern_library import (
     get_pattern_context_var_name,
     get_pattern_template_suffix,
-    get_sections,
+    get_sections, get_setting,
 )
 from pattern_library.context_modifiers import registry
 from pattern_library.exceptions import TemplateIsNotPattern
@@ -166,6 +166,11 @@ class TemplateRenderer:
         templates = base_dict()
         template_dirs = get_template_dirs()
 
+        if get_setting("SORT_BY_PATTERN_NAME"):
+            sorting_key = lambda o: o.pattern_name
+        else:
+            sorting_key = lambda o: o.origin.name
+
         for lookup_dir in template_dirs:
             for root, dirs, files in os.walk(lookup_dir, topdown=True):
                 # Ignore folders without files
@@ -216,8 +221,7 @@ class TemplateRenderer:
                             templates_to_store = templates_to_store["template_groups"][
                                 folder
                             ]
-
-                    templates_to_store["templates_stored"].extend(found_templates)
+                    templates_to_store["templates_stored"] = sorted((*templates_to_store["templates_stored"], *found_templates), key=sorting_key)
 
         # Order the templates alphabetically
         for templates_objs in templates["template_groups"].values():

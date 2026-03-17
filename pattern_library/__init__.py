@@ -35,6 +35,8 @@ DEFAULT_SETTINGS = {
         ("templates", ["patterns/templates"]),
         ("pages", ["patterns/pages"]),
     ),
+    # False to sort by template (file) name, true to sort by pattern name (eg from YAML or fallback to filename)
+    "SORT_BY_PATTERN_NAME": False,
 }
 
 
